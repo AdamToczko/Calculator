@@ -1,0 +1,8 @@
+* {
+    box-sizing: border-box;
+  }
+
+  .calculator__keys { 
+    display: grid; 
+    /* other necessary CSS */ 
+  }
