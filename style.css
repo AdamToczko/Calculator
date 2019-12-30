@@ -27,10 +27,20 @@
   }
 
   .key--equal {
+    background: #29D4F7;
     grid-column: -2;
     grid-row: 2 / span 4;
   }
 
   button {
+    background: #E1DEDE;
     font-size: 2em;
+  }
+
+  .clear {
+    background: #F55151;
+  }
+
+  button:focus {
+    outline: none;
   }
