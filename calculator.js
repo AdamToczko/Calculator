@@ -8,7 +8,7 @@ keys.addEventListener('click', event => {
   if (!action) {
      console.log('number key!')
    }
-   else if (
+   if (
      action === 'add' ||
      action === 'subtract' ||
      action === 'multiply' ||
@@ -16,6 +16,17 @@ keys.addEventListener('click', event => {
    ) {
      console.log('operator key!')
    } 
+   if (action === 'decimal') {
+    console.log('decimal key!')
+  }
+  
+  if (action === 'clear') {
+    console.log('clear key!')
+  }
+  
+  if (action === 'calculate') {
+    console.log('equal key!')
+  }
 }
  
 })
