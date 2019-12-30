@@ -2,12 +2,13 @@
     box-sizing: border-box;
   }
 
-/* .calculator {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+.calculator {
+  margin: 0 auto;
+  width: 50%;
+  margin-top: 8%;
+  text-align: center;
         
-} */
+}
 
 .calculator__display {
     margin-top:5%;
@@ -19,10 +20,17 @@
     text-align: right;
 }
 .calculator__keys { 
-    height: 60vh;
+    height: 50vh;
     display: grid;
     grid-gap: 1px;
     grid-template-columns: repeat(4, 1fr);
-    font-size: 1.7em;
   }
 
+  .key--equal {
+    grid-column: -2;
+    grid-row: 2 / span 4;
+  }
+
+  button {
+    font-size: 2em;
+  }
