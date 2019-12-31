@@ -37,21 +37,21 @@ keys.addEventListener('click', event => {
   
   if (action === 'calculate') {
     const secondValue = displayedNum // when we hit calculate we only see second number that was hit
-    const firstValue = calculator.dataset.firstValue
-    const operator = calculator.dataset.operator
+    const firstValue = calculator.dataset.firstValue // getting first number
+    const operator = calculator.dataset.operator // getting operator 
 
     const calculate = (n1, operator, n2) => {
         let result = ''
-      
+        
         if (operator === 'add') {
-          result = n1 + n2
-        } else if (operator === 'subtract') {
-          result = n1 - n2
-        } else if (operator === 'multiply') {
-          result = n1 * n2
-        } else if (operator === 'divide') {
-          result = n1 / n2
-        }
+            result = parseFloat(n1) + parseFloat(n2)
+          } else if (operator === 'subtract') {
+            result = parseFloat(n1) - parseFloat(n2)
+          } else if (operator === 'multiply') {
+            result = parseFloat(n1) * parseFloat(n2)
+          } else if (operator === 'divide') {
+            result = parseFloat(n1) / parseFloat(n2)
+          }
       
         return result
       }
