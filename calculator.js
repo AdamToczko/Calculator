@@ -8,9 +8,11 @@ keys.addEventListener('click', event => {
     const action = key.dataset.action
     const keyContent = key.textContent
     const displayedNum = display.textContent
+    const previousKeyType = calculator.dataset.previousKeyType
+
   if (!action) {
      console.log('number key!')
-     if (displayedNum === '00') {
+     if (displayedNum === '00' || previousKeyType === 'operator') {
         display.textContent = keyContent
       } else {
         display.textContent = displayedNum + keyContent
@@ -22,7 +24,7 @@ keys.addEventListener('click', event => {
      action === 'multiply' ||
      action === 'divide'
    ) {
-     console.log('operator key!')
+    calculator.dataset.previousKeyType = 'operator'
    } 
    if (action === 'decimal') {
     display.textContent = displayedNum + '.'
