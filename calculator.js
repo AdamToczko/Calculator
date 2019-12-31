@@ -11,7 +11,6 @@ keys.addEventListener('click', event => {
     const previousKeyType = calculator.dataset.previousKeyType
 
   if (!action) {
-     console.log('number key!')
      if (displayedNum === '00' || previousKeyType === 'operator') {
         display.textContent = keyContent
       } else {
@@ -24,7 +23,9 @@ keys.addEventListener('click', event => {
      action === 'multiply' ||
      action === 'divide'
    ) {
-    calculator.dataset.previousKeyType = 'operator'
+    calculator.dataset.previousKeyType = 'operator' //the previous key is an operator key.
+    calculator.dataset.firstValue = displayedNum // store first number before operator was hit 
+    calculator.dataset.operator = action // get the operator 
    } 
    if (action === 'decimal') {
     display.textContent = displayedNum + '.'
@@ -35,7 +36,27 @@ keys.addEventListener('click', event => {
   }
   
   if (action === 'calculate') {
-    console.log('equal key!')
+    const secondValue = displayedNum // when we hit calculate we only see second number that was hit
+    const firstValue = calculator.dataset.firstValue
+    const operator = calculator.dataset.operator
+
+    const calculate = (n1, operator, n2) => {
+        let result = ''
+      
+        if (operator === 'add') {
+          result = n1 + n2
+        } else if (operator === 'subtract') {
+          result = n1 - n2
+        } else if (operator === 'multiply') {
+          result = n1 * n2
+        } else if (operator === 'divide') {
+          result = n1 / n2
+        }
+      
+        return result
+      }
+  
+    display.textContent = calculate(firstValue, operator, secondValue) // need to define function calculate 
   }
 }
  
