@@ -51,3 +51,8 @@ body {
   button:focus {
     outline: none;
   }
+
+  .calculator__keys :active {
+    background:  rgb(115, 115, 153);
+  }
+
