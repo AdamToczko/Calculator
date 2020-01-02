@@ -47,7 +47,7 @@ keys.addEventListener('click', event => {
     const secondValue = displayedNum
 
     
-    if(firstValue && operator) {
+    if(firstValue && operator && previousKeyType !== 'operator') {
       display.textContent = calculate(firstValue, operator, secondValue)
     }
 
