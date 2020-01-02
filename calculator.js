@@ -32,9 +32,16 @@ keys.addEventListener('click', event => {
   }
   // logic for two clear options :
   // All Clear (AC) clears everything and resets the calculator to its initial state.
-  //Clear entry (CE) clears the current entry. It keeps previous numbers in memory.
+  //Clear entry (CE) clears the current entry. It keeps previous numbers in memory. 
   if (action === 'clear') {
     display.textContent = '0'
+    key.textContent = 'AC'
+    calculator.dataset.previousKeyType = 'clear'
+  }
+// CE shows after operator is hit
+  if (action != 'clear') {
+    const clearButton = calculator.querySelector('[data-action=clear]')
+    clearButton.textContent = 'CE'
   }
   
   if (action === 'calculate') {
