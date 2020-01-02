@@ -48,11 +48,17 @@ keys.addEventListener('click', event => {
 
     
     if(firstValue && operator && previousKeyType !== 'operator') {
-      display.textContent = calculate(firstValue, operator, secondValue)
+      const calcValue = calculate(firstValue, operator, secondValue)
+      display.textContent = calcValue
+      // take calculated value as first value if we press operator again 
+      calculator.dataset.firstValue = calcValue
+
+    } else {
+      calculator.dataset.firstValue = displayedNum // store first number before operator was hit 
     }
 
     calculator.dataset.previousKeyType = 'operator' //the previous key is an operator key.
-    calculator.dataset.firstValue = displayedNum // store first number before operator was hit 
+    
     calculator.dataset.operator = action // get the operator 
    } 
 
