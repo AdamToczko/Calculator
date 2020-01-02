@@ -11,7 +11,7 @@ keys.addEventListener('click', event => {
     const previousKeyType = calculator.dataset.previousKeyType
 
   if (!action) {
-     if (displayedNum === '00' || previousKeyType === 'operator') {
+     if (displayedNum === '0' || previousKeyType === 'operator') {
         display.textContent = keyContent
       } else {
         display.textContent = displayedNum + keyContent
@@ -30,9 +30,11 @@ keys.addEventListener('click', event => {
    if (action === 'decimal') {
     display.textContent = displayedNum + '.'
   }
-  
+  // logic for two clear options :
+  // All Clear (AC) clears everything and resets the calculator to its initial state.
+  //Clear entry (CE) clears the current entry. It keeps previous numbers in memory.
   if (action === 'clear') {
-    console.log('clear key!')
+    display.textContent = '0'
   }
   
   if (action === 'calculate') {
