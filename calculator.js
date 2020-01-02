@@ -101,9 +101,11 @@ keys.addEventListener('click', event => {
     const secondValue = displayedNum // when we hit calculate we only see second number that was hit
     const firstValue = calculator.dataset.firstValue // getting first number
     const operator = calculator.dataset.operator // getting operator 
-   
-      display.textContent = calculate(firstValue, operator, secondValue) // need to define function calculate 
     
+    // if first value does not exist equal will not calculate 
+    if(firstValue) {
+      display.textContent = calculate(firstValue, operator, secondValue) // need to define function calculate 
+    }
     calculator.dataset.previousKeyType = 'calculate' // update previousKeyType for each clicked key
   }
 }
