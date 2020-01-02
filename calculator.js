@@ -47,7 +47,7 @@ keys.addEventListener('click', event => {
     const secondValue = displayedNum
 
     
-    if(firstValue && operator && previousKeyType !== 'operator') {
+    if(firstValue && operator && previousKeyType !== 'operator' && previousKeyType !== 'calculate') {
       const calcValue = calculate(firstValue, operator, secondValue)
       display.textContent = calcValue
       // take calculated value as first value if we press operator again 
@@ -83,6 +83,7 @@ keys.addEventListener('click', event => {
       calculator.dataset.firstValue = ''
       calculator.dataset.operator = ''
       calculator.dataset.previousKeyType = ''
+      calculator.dataset.modValue = ''
     } else {
       key.textContent = 'AC'
     }
@@ -98,14 +99,23 @@ keys.addEventListener('click', event => {
   }
   
   if (action === 'calculate') {
-    const secondValue = displayedNum // when we hit calculate we only see second number that was hit
-    const firstValue = calculator.dataset.firstValue // getting first number
+    let secondValue = displayedNum // when we hit calculate we only see second number that was hit
+    let firstValue = calculator.dataset.firstValue // getting first number
     const operator = calculator.dataset.operator // getting operator 
     
     // if first value does not exist equal will not calculate 
     if(firstValue) {
+      // adding scenario when equal is hit multiple times so should continue to calculate 
+      if (previousKeyType === 'calculate'){
+        firstValue = displayedNum
+        secondValue = calculator.dataset.modValue
+      }
+
       display.textContent = calculate(firstValue, operator, secondValue) // need to define function calculate 
     }
+    // we need to carry forward previous second value into new calculation
+    // need to store it in custome attribute 
+    calculator.dataset.modValue = secondValue
     calculator.dataset.previousKeyType = 'calculate' // update previousKeyType for each clicked key
   }
 }
