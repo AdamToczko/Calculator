@@ -28,7 +28,10 @@ keys.addEventListener('click', event => {
     calculator.dataset.operator = action // get the operator 
    } 
    if (action === 'decimal') {
-    display.textContent = displayedNum + '.'
+     //no action if . already on display
+    if (!displayedNum.includes('.')) {
+      display.textContent = displayedNum + '.'
+    }
   }
   // logic for two clear options :
   // All Clear (AC) clears everything and resets the calculator to its initial state.
