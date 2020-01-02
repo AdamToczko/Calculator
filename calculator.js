@@ -34,8 +34,15 @@ keys.addEventListener('click', event => {
   // All Clear (AC) clears everything and resets the calculator to its initial state.
   //Clear entry (CE) clears the current entry. It keeps previous numbers in memory. 
   if (action === 'clear') {
+    // resetting to initial state means resetting all previously set atributes 
+    if (key.textContent === 'AC') {
+      calculator.dataset.firstValue = ''
+      calculator.dataset.operator = ''
+      calculator.dataset.previousKeyType = ''
+    } else {
+      key.textContent = 'AC'
+    }
     display.textContent = '0'
-    key.textContent = 'AC'
     calculator.dataset.previousKeyType = 'clear'
   }
 // CE shows after operator is hit
