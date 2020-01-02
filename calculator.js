@@ -4,14 +4,20 @@ const display = document.querySelector('.calculator__display')
 
 const calculate = (n1, operator, n2) => {
   
+  const firstNum = parseFloat(n1)
+  const secondNum = parseFloat(n2)
+
   if (operator === 'add') {
-      return parseFloat(n1) + parseFloat(n2)
-    } else if (operator === 'subtract') {
-      return parseFloat(n1) - parseFloat(n2)
-    } else if (operator === 'multiply') {
-      return parseFloat(n1) * parseFloat(n2)
-    } else if (operator === 'divide') {
-      return parseFloat(n1) / parseFloat(n2)
+      return firstNum + secondNum
+    } 
+  if (operator === 'subtract') {
+      return firstNum - secondNum
+    } 
+  if (operator === 'multiply') {
+      return firstNum * secondNum
+    } 
+  if (operator === 'divide') {
+      return firstNum / secondNum
     }
 }
 
