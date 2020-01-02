@@ -2,6 +2,22 @@ const calculator = document.querySelector('.calculator');
 const keys = calculator.querySelector('.calculator__keys')
 const display = document.querySelector('.calculator__display')
 
+const calculate = (n1, operator, n2) => {
+  let result = ''
+  
+  if (operator === 'add') {
+      result = parseFloat(n1) + parseFloat(n2)
+    } else if (operator === 'subtract') {
+      result = parseFloat(n1) - parseFloat(n2)
+    } else if (operator === 'multiply') {
+      result = parseFloat(n1) * parseFloat(n2)
+    } else if (operator === 'divide') {
+      result = parseFloat(n1) / parseFloat(n2)
+    }
+
+  return result
+}
+
 keys.addEventListener('click', event => {
  if (event.target.matches('button')) {
     const key = event.target
@@ -18,16 +34,28 @@ keys.addEventListener('click', event => {
       }
       calculator.dataset.previousKeyType = 'number' // update previousKeyType for each clicked key
    }
+
    if (
      action === 'add' ||
      action === 'subtract' ||
      action === 'multiply' ||
      action === 'divide'
    ) {
+     // logic for hitting first number - operator - second number - operator again 
+    const firstValue = calculator.dataset.firstValue
+    const operator = calculator.dataset.operator
+    const secondValue = displayedNum
+
+    
+    if(firstValue && operator) {
+      display.textContent = calculate(firstValue, operator, secondValue)
+    }
+
     calculator.dataset.previousKeyType = 'operator' //the previous key is an operator key.
     calculator.dataset.firstValue = displayedNum // store first number before operator was hit 
     calculator.dataset.operator = action // get the operator 
    } 
+
    if (action === 'decimal') {
      //no action if . already on display
     if (!displayedNum.includes('.')) {
@@ -39,6 +67,7 @@ keys.addEventListener('click', event => {
     }
     calculator.dataset.previousKeyType = 'decimal' // update previousKeyType for each clicked key
   }
+
   // logic for two clear options :
   // All Clear (AC) clears everything and resets the calculator to its initial state.
   //Clear entry (CE) clears the current entry. It keeps previous numbers in memory. 
@@ -52,9 +81,10 @@ keys.addEventListener('click', event => {
       key.textContent = 'AC'
     }
     display.textContent = '0'
-    calculator.dataset.previousKeyType = 'clear'
+
     calculator.dataset.previousKeyType = 'clear' // update previousKeyType for each clicked key
   }
+
 // CE shows after operator is hit
   if (action != 'clear') {
     const clearButton = calculator.querySelector('[data-action=clear]')
@@ -65,24 +95,9 @@ keys.addEventListener('click', event => {
     const secondValue = displayedNum // when we hit calculate we only see second number that was hit
     const firstValue = calculator.dataset.firstValue // getting first number
     const operator = calculator.dataset.operator // getting operator 
-
-    const calculate = (n1, operator, n2) => {
-        let result = ''
-        
-        if (operator === 'add') {
-            result = parseFloat(n1) + parseFloat(n2)
-          } else if (operator === 'subtract') {
-            result = parseFloat(n1) - parseFloat(n2)
-          } else if (operator === 'multiply') {
-            result = parseFloat(n1) * parseFloat(n2)
-          } else if (operator === 'divide') {
-            result = parseFloat(n1) / parseFloat(n2)
-          }
-      
-        return result
-      }
-  
-    display.textContent = calculate(firstValue, operator, secondValue) // need to define function calculate 
+   
+      display.textContent = calculate(firstValue, operator, secondValue) // need to define function calculate 
+    
     calculator.dataset.previousKeyType = 'calculate' // update previousKeyType for each clicked key
   }
 }
