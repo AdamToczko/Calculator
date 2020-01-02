@@ -16,6 +16,7 @@ keys.addEventListener('click', event => {
       } else {
         display.textContent = displayedNum + keyContent
       }
+      calculator.dataset.previousKeyType = 'number' // update previousKeyType for each clicked key
    }
    if (
      action === 'add' ||
@@ -32,6 +33,7 @@ keys.addEventListener('click', event => {
     if (!displayedNum.includes('.')) {
       display.textContent = displayedNum + '.'
     }
+    calculator.dataset.previousKeyType = 'decimal' // update previousKeyType for each clicked key
   }
   // logic for two clear options :
   // All Clear (AC) clears everything and resets the calculator to its initial state.
@@ -47,6 +49,7 @@ keys.addEventListener('click', event => {
     }
     display.textContent = '0'
     calculator.dataset.previousKeyType = 'clear'
+    calculator.dataset.previousKeyType = 'clear' // update previousKeyType for each clicked key
   }
 // CE shows after operator is hit
   if (action != 'clear') {
@@ -76,6 +79,7 @@ keys.addEventListener('click', event => {
       }
   
     display.textContent = calculate(firstValue, operator, secondValue) // need to define function calculate 
+    calculator.dataset.previousKeyType = 'calculate' // update previousKeyType for each clicked key
   }
 }
  
