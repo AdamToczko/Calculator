@@ -32,6 +32,10 @@ keys.addEventListener('click', event => {
      //no action if . already on display
     if (!displayedNum.includes('.')) {
       display.textContent = displayedNum + '.'
+    } 
+    //Display to show "0." if a user hits a decimal key after an operator key 
+    else if (previousKeyType === 'operator') {
+      display.textContent = '0.'
     }
     calculator.dataset.previousKeyType = 'decimal' // update previousKeyType for each clicked key
   }
